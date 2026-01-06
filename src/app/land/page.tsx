@@ -53,9 +53,9 @@ const parcels = [
 ] as const;
 
 export default function LandPage() {
-  const Map = useMemo(() => dynamic(() => import('@/components/map'), {
-      loading: () => <p>Chargement de la carte...</p>,
-      ssr: false
+  const Map = useMemo(() => dynamic(() => import('@/components/map'), { 
+    loading: () => <p>Chargement de la carte...</p>,
+    ssr: false 
   }), []);
 
   return (

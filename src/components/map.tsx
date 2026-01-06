@@ -7,13 +7,15 @@ import L from 'leaflet';
 import { Button } from './ui/button';
 
 // Fix for default icon issue with Webpack
-delete (L.Icon.Default.prototype as any)._getIconUrl;
+if (typeof window !== 'undefined') {
+  delete (L.Icon.Default.prototype as any)._getIconUrl;
 
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-});
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  });
+}
 
 
 type Parcel = {
@@ -26,7 +28,7 @@ type Parcel = {
 };
 
 interface MapProps {
-  parcels: Parcel[];
+  parcels: readonly Parcel[];
 }
 
 const parcelStatusColors = {
@@ -37,6 +39,10 @@ const parcelStatusColors = {
 
 export default function Map({ parcels }: MapProps) {
   const position: L.LatLngTuple = [14.724, -17.434]; // Centered on a sample parcel
+
+  if (typeof window === 'undefined') {
+    return null;
+  }
 
   return (
     <MapContainer center={position} zoom={16} scrollWheelZoom={true} style={{ height: '100%', width: '100%' }}>
