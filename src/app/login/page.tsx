@@ -47,9 +47,11 @@ export default function LoginPage() {
               </div>
               <Input id="password" type="password" required />
             </div>
-            <Button type="submit" className="w-full">
-              Se connecter
-            </Button>
+            <Link href="/" className="w-full">
+              <Button type="submit" className="w-full">
+                Se connecter
+              </Button>
+            </Link>
             <Button variant="outline" className="w-full">
               S'inscrire en tant que citoyen
             </Button>

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calendar, FileText, PlusCircle, Users } from "lucide-react";
+import Link from "next/link";
 
 const deliberations = [
     { id: "DEL-2024-03-01", date: "15/03/2024", title: "Adoption du compte administratif 2023", status: "Adoptée", votesFor: 35, votesAgainst: 2, abstentions: 3 },
@@ -53,7 +54,9 @@ export default function DeliberationsPage() {
                     </div>
                 </div>
                  <div>
-                    <Button className="w-full">Consulter l'ordre du jour</Button>
+                    <Link href="#" className="w-full">
+                        <Button className="w-full">Consulter l'ordre du jour</Button>
+                    </Link>
                 </div>
             </CardContent>
         </Card>

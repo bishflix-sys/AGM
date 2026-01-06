@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -27,6 +28,7 @@ import type { ChartConfig } from "@/components/ui/chart"
 
 import AppLayout from "@/components/layout/app-layout";
 import { Building, FolderKanban, Landmark, Users, FileText, PiggyBank } from "lucide-react";
+import Link from "next/link";
 
 const chartData = [
   { month: "Janvier", desktop: 186, mobile: 80 },
@@ -71,46 +73,54 @@ export default function DashboardPage() {
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
         <h2 className="text-3xl font-bold tracking-tight font-headline">Tableau de bord</h2>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Projets en cours</CardTitle>
-              <FolderKanban className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">12</div>
-              <p className="text-xs text-muted-foreground">+2 depuis le mois dernier</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Agents actifs</CardTitle>
-              <Users className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">231</div>
-              <p className="text-xs text-muted-foreground">+12 depuis le mois dernier</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Actes émis (Mois)</CardTitle>
-              <FileText className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">573</div>
-              <p className="text-xs text-muted-foreground">+32 par rapport au mois dernier</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Budget exécuté</CardTitle>
-              <PiggyBank className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">78%</div>
-              <p className="text-xs text-muted-foreground">Budget annuel</p>
-            </CardContent>
-          </Card>
+          <Link href="/projects">
+            <Card className="hover:bg-accent hover:text-accent-foreground transition-colors">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Projets en cours</CardTitle>
+                <FolderKanban className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">12</div>
+                <p className="text-xs text-muted-foreground">+2 depuis le mois dernier</p>
+              </CardContent>
+            </Card>
+          </Link>
+          <Link href="/hr">
+            <Card className="hover:bg-accent hover:text-accent-foreground transition-colors">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Agents actifs</CardTitle>
+                <Users className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">231</div>
+                <p className="text-xs text-muted-foreground">+12 depuis le mois dernier</p>
+              </CardContent>
+            </Card>
+          </Link>
+          <Link href="/civil-status">
+            <Card className="hover:bg-accent hover:text-accent-foreground transition-colors">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Actes émis (Mois)</CardTitle>
+                <FileText className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">573</div>
+                <p className="text-xs text-muted-foreground">+32 par rapport au mois dernier</p>
+              </CardContent>
+            </Card>
+          </Link>
+          <Link href="/finance">
+            <Card className="hover:bg-accent hover:text-accent-foreground transition-colors">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Budget exécuté</CardTitle>
+                <PiggyBank className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">78%</div>
+                <p className="text-xs text-muted-foreground">Budget annuel</p>
+              </CardContent>
+            </Card>
+          </Link>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
           <Card className="col-span-4">
