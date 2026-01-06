@@ -5,6 +5,7 @@ import { MapContainer, TileLayer, Polygon, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { Button } from './ui/button';
+import Link from 'next/link';
 
 // Fix for default icon issue with Webpack
 if (typeof window !== 'undefined') {
@@ -63,7 +64,9 @@ export default function Map({ parcels }: MapProps) {
                 <p><strong>Superficie:</strong> {parcel.area} m²</p>
                 <p><strong>Statut:</strong> <span className="font-medium" style={{color: parcelStatusColors[parcel.status]}}>{parcel.status.charAt(0).toUpperCase() + parcel.status.slice(1)}</span></p>
                 {parcel.beneficiary && <p><strong>Bénéficiaire:</strong> {parcel.beneficiary}</p>}
-                <Button size="sm" className="w-full mt-2">Voir la fiche foncière</Button>
+                <Link href={`/land/${parcel.id}`} target="_blank" passHref>
+                  <Button size="sm" className="w-full mt-2">Voir la fiche foncière</Button>
+                </Link>
             </div>
           </Popup>
         </Polygon>
