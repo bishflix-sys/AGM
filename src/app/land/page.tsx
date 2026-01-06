@@ -4,10 +4,24 @@
 import AppLayout from "@/components/layout/app-layout";
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { AreaChart, CheckCircle, MapPin, MessageSquareWarning, PlusCircle, XCircle } from "lucide-react";
+import { AreaChart, CheckCircle, MapPin, PlusCircle, XCircle } from "lucide-react";
+import dynamic from 'next/dynamic';
+import { useMemo } from 'react';
+
+// Sample data for land parcels
+const parcels = [
+  { id: 'P-SBK-A-001', section: 'A', area: 350, status: 'affectée' as const, beneficiary: 'Moussa Diop', geom: [[14.7412, -17.1410], [14.7415, -17.1405], [14.7410, -17.1402], [14.7407, -17.1408]] },
+  { id: 'P-SBK-A-002', section: 'A', area: 400, status: 'libre' as const, beneficiary: null, geom: [[14.7420, -17.1395], [14.7423, -17.1390], [14.7418, -17.1387], [14.7415, -17.1392]] },
+  { id: 'P-SBK-B-015', section: 'B', area: 300, status: 'litige' as const, beneficiary: 'Famille Ndiaye', geom: [[14.7390, -17.1425], [14.7393, -17.1420], [14.7388, -17.1417], [14.7385, -17.1422]] },
+  { id: 'P-SBK-C-102', section: 'C', area: 500, status: 'affectée' as const, beneficiary: 'Aminata Sow', geom: [[14.7405, -17.1380], [14.7408, -17.1375], [14.7403, -17.1372], [14.7400, -17.1377]] },
+];
 
 
 export default function LandPage() {
+  const Map = useMemo(() => dynamic(() => import('@/components/map'), { 
+    ssr: false,
+    loading: () => <div className="h-full w-full bg-muted flex items-center justify-center"><p>Chargement de la carte...</p></div>
+  }), []);
 
   return (
     <AppLayout>
@@ -65,17 +79,13 @@ export default function LandPage() {
             </Card>
         </div>
 
-
-        <Card className="mt-6">
+        <Card className="h-[600px]">
             <CardHeader>
-                <CardTitle className="font-headline">Plan Foncier</CardTitle>
-                <CardDescription>La carte interactive sera bientôt disponible.</CardDescription>
+                <CardTitle className="font-headline">Plan Foncier de Sébikotane</CardTitle>
+                <CardDescription>Cliquez sur une parcelle pour voir les détails.</CardDescription>
             </CardHeader>
-            <CardContent className="flex items-center justify-center p-16">
-                <div className="text-center text-muted-foreground">
-                    <MessageSquareWarning className="mx-auto h-12 w-12 mb-4" />
-                    <p>La fonctionnalité de carte est en cours de développement.</p>
-                </div>
+            <CardContent className="h-[calc(100%-80px)]">
+                 <Map parcels={parcels}/>
             </CardContent>
         </Card>
       </div>

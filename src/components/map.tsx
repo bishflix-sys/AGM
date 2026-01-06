@@ -38,14 +38,14 @@ const parcelStatusColors = {
 };
 
 export default function Map({ parcels }: MapProps) {
-  const position: L.LatLngTuple = [14.724, -17.434]; // Centered on a sample parcel
+  const position: L.LatLngTuple = [14.7407, -17.1391]; // Sébikotane
 
   if (typeof window === 'undefined') {
     return null;
   }
 
   return (
-    <MapContainer center={position} zoom={16} scrollWheelZoom={true} style={{ height: '100%', width: '100%' }}>
+    <MapContainer center={position} zoom={15} scrollWheelZoom={true} style={{ height: '100%', width: '100%', borderRadius: 'var(--radius)' }}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -57,8 +57,8 @@ export default function Map({ parcels }: MapProps) {
           pathOptions={{ color: parcelStatusColors[parcel.status], weight: 2, fillOpacity: 0.5 }}
         >
           <Popup>
-            <div className="space-y-2 font-body text-sm">
-                <h3 className="font-headline font-semibold text-base">Parcelle {parcel.id}</h3>
+            <div className="space-y-2 text-sm">
+                <h3 className="font-semibold text-base">Parcelle {parcel.id}</h3>
                 <p><strong>Section:</strong> {parcel.section}</p>
                 <p><strong>Superficie:</strong> {parcel.area} m²</p>
                 <p><strong>Statut:</strong> <span className="font-medium" style={{color: parcelStatusColors[parcel.status]}}>{parcel.status.charAt(0).toUpperCase() + parcel.status.slice(1)}</span></p>
