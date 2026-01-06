@@ -5,9 +5,8 @@ import 'leaflet/dist/leaflet.css';
 import AppLayout from "@/components/layout/app-layout";
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin } from "lucide-react";
+import { AreaChart, CheckCircle, MapPin, PlusCircle, XCircle } from "lucide-react";
 import dynamic from 'next/dynamic';
-import { useMemo } from 'react';
 
 // Sample data for land parcels
 const parcels = [
@@ -15,7 +14,7 @@ const parcels = [
     id: "P001",
     section: "A",
     area: 1200.50,
-    status: "affectée",
+    status: 'affectée',
     beneficiary: "Moussa Diop",
     geom: [
       [14.7241, -17.4342],
@@ -28,7 +27,7 @@ const parcels = [
     id: "P002",
     section: "B",
     area: 850.00,
-    status: "libre",
+    status: 'libre',
     beneficiary: null,
     geom: [
         [14.7250, -17.4350],
@@ -41,7 +40,7 @@ const parcels = [
       id: "P003",
       section: "A",
       area: 2500.00,
-      status: "litige",
+      status: 'litige',
       beneficiary: "Fatou N'diaye",
       geom: [
           [14.7221, -17.4322],
@@ -50,13 +49,7 @@ const parcels = [
           [14.7216, -17.4319]
       ]
   }
-];
-
-const parcelStatusColors = {
-  affectée: 'blue',
-  libre: 'green',
-  litige: 'red'
-};
+] as const;
 
 const Map = dynamic(() => import('@/components/map'), {
     loading: () => <p>Chargement de la carte...</p>,
@@ -75,13 +68,57 @@ export default function LandPage() {
               Registre des attributions foncières, parcelles et bénéficiaires.
             </p>
           </div>
-          <Button>+ Nouvelle Parcelle</Button>
+          <Button><PlusCircle className="mr-2"/> Nouvelle Parcelle</Button>
         </header>
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Parcelles Libres</CardTitle>
+                    <CheckCircle className="h-4 w-4 text-green-500"/>
+                </CardHeader>
+                <CardContent>
+                    <div className="text-2xl font-bold">152</div>
+                    <p className="text-xs text-muted-foreground">Disponibles pour affectation</p>
+                </CardContent>
+            </Card>
+             <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Parcelles Affectées</CardTitle>
+                    <AreaChart className="h-4 w-4 text-muted-foreground"/>
+                </CardHeader>
+                <CardContent>
+                    <div className="text-2xl font-bold">1,234</div>
+                    <p className="text-xs text-muted-foreground">Total des parcelles attribuées</p>
+                </CardContent>
+            </Card>
+             <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Dossiers en Litige</CardTitle>
+                    <XCircle className="h-4 w-4 text-red-500"/>
+                </CardHeader>
+                <CardContent>
+                    <div className="text-2xl font-bold">28</div>
+                    <p className="text-xs text-muted-foreground">Dossiers en cours de résolution</p>
+                </CardContent>
+            </Card>
+             <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Superficie Totale</CardTitle>
+                    <MapPin className="h-4 w-4 text-muted-foreground"/>
+                </CardHeader>
+                <CardContent>
+                    <div className="text-2xl font-bold">450 ha</div>
+                    <p className="text-xs text-muted-foreground">Superficie cadastrée</p>
+                </CardContent>
+            </Card>
+        </div>
+
 
         <Card className="mt-6">
             <CardHeader>
-                <CardTitle className="font-headline">Carte des Parcelles</CardTitle>
-                <CardDescription>Cliquez sur une parcelle pour voir ses informations.</CardDescription>
+                <CardTitle className="font-headline">Carte du Plan Foncier</CardTitle>
+                <CardDescription>Cliquez sur une parcelle pour afficher ses informations.</CardDescription>
             </CardHeader>
             <CardContent>
                 <div className="h-[60vh] w-full rounded-md border">
@@ -93,3 +130,5 @@ export default function LandPage() {
     </AppLayout>
   );
 }
+
+    
