@@ -1,6 +1,18 @@
+
+'use client';
 import AppLayout from "@/components/layout/app-layout";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { PieChart } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { FileDown, FileText, Landmark, Users } from "lucide-react";
+
+
+const reports = [
+    { name: "Rapport Financier Mensuel", category: "Finance", icon: <Landmark className="h-8 w-8 text-primary"/> },
+    { name: "Rapport des Ressources Humaines", category: "RH", icon: <Users className="h-8 w-8 text-primary"/> },
+    { name: "Synthèse de l'État Civil", category: "État Civil", icon: <FileText className="h-8 w-8 text-primary"/> },
+    { name: "Rapport d'activité des Projets", category: "Projets", icon: <FileText className="h-8 w-8 text-primary"/> },
+]
 
 export default function ReportsPage() {
   return (
@@ -13,18 +25,54 @@ export default function ReportsPage() {
           </p>
         </header>
 
-        <Card className="mt-6">
+        <Card>
             <CardHeader>
-                <CardTitle>En cours de développement</CardTitle>
-                <CardDescription>Cette section est en cours de construction.</CardDescription>
+                <CardTitle>Générateur de Rapports</CardTitle>
+                <CardDescription>Sélectionnez un modèle de rapport et la période souhaitée.</CardDescription>
             </CardHeader>
-            <CardContent className="flex items-center justify-center p-16">
-                <div className="text-center text-muted-foreground">
-                    <PieChart className="mx-auto h-12 w-12 mb-4" />
-                    <p>La fonctionnalité de génération de rapports sera bientôt disponible ici.</p>
+            <CardContent className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="md:col-span-2">
+                    <Select>
+                        <SelectTrigger>
+                            <SelectValue placeholder="Choisir un modèle de rapport..."/>
+                        </SelectTrigger>
+                        <SelectContent>
+                           {reports.map(r => <SelectItem key={r.name} value={r.name}>{r.name}</SelectItem>)}
+                        </SelectContent>
+                    </Select>
+                </div>
+                 <div>
+                    <Select>
+                        <SelectTrigger>
+                            <SelectValue placeholder="Choisir une période..."/>
+                        </SelectTrigger>
+                        <SelectContent>
+                           <SelectItem value="month">Mois dernier</SelectItem>
+                           <SelectItem value="quarter">Trimestre dernier</SelectItem>
+                           <SelectItem value="year">Année dernière</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Button className="w-full"><FileDown className="mr-2"/> Générer le rapport</Button>
                 </div>
             </CardContent>
         </Card>
+
+        <div className="space-y-2">
+            <h3 className="text-xl font-semibold">Modèles de rapports disponibles</h3>
+             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                {reports.map(report => (
+                    <Card key={report.name}>
+                        <CardContent className="flex flex-col items-center justify-center p-6 text-center">
+                            {report.icon}
+                            <p className="mt-4 font-semibold">{report.name}</p>
+                            <p className="text-sm text-muted-foreground">{report.category}</p>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
+        </div>
       </div>
     </AppLayout>
   );
