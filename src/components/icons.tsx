@@ -17,8 +17,8 @@ export function AgmLogo(props: SVGProps<SVGSVGElement>) {
         {/* Background Star */}
         <path 
             d="M98 35 L104.18 45.33 L116.12 47.03 L107.56 55.27 L109.42 67.07 L98 61.5 L86.58 67.07 L88.44 55.27 L79.88 47.03 L91.82 45.33 Z"
-            fill="hsl(var(--primary))"
-            opacity="0.1"
+            fill="#FDEF42" // Jaune
+            opacity="0.8"
             transform="translate(1, -5)"
         />
 
@@ -27,15 +27,17 @@ export function AgmLogo(props: SVGProps<SVGSVGElement>) {
             d="M10 10 L30 60 L50 60 L70 10 H50 L40 40 L30 10 Z" 
             fill="#00853E"
         />
+        {/* Yellow A part */}
         <path 
             d="M 50 10 C 45 25, 45 45, 50 60 L 30 60 L 10 10 Z" 
-            fill="currentColor"
+            fill="#FDEF42"
             clipPath="url(#clip-path)"
         />
+        {/* Red A part */}
         <path 
             d="M40 35 C 42 30, 45 30, 48 35"
             fill="none"
-            stroke="#00853E"
+            stroke="#E31B23"
             strokeWidth="3.5"
             strokeLinecap="round"
         />
@@ -48,7 +50,7 @@ export function AgmLogo(props: SVGProps<SVGSVGElement>) {
             x="95" 
             y="58" 
             fontSize="55" 
-            fill="#D81E05"
+            fill="#E31B23"
         >
             GM
         </text>
