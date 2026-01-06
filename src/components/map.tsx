@@ -34,8 +34,8 @@ interface MapProps {
 
 const parcelStatusColors = {
   affectée: '#0F3C68', // Bleu foncé
-  libre: '#00853E', // Vert
-  litige: '#BD272B',  // Rouge
+  libre: 'hsl(var(--primary))', // Vert
+  litige: 'hsl(var(--destructive))',  // Rouge
 };
 
 export default function Map({ parcels }: MapProps) {
