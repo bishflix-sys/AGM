@@ -12,23 +12,24 @@ import {
   LayoutDashboard,
   MapPin,
   Users,
+  Settings,
 } from "lucide-react";
 import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
-import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", icon: LayoutDashboard, label: "Tableau de bord" },
   { href: "/civil-status", icon: FileText, label: "État Civil" },
-  { href: "/land", icon: MapPin, label: "Gestion Foncière" },
+  { href: "/land", icon: MapPin, label: "Foncier" },
   { href: "/finance", icon: Landmark, label: "Finances" },
   { href: "/hr", icon: Users, label: "Ressources Humaines" },
-  { href: "/projects", icon: KanbanSquare, label: "Suivi de Projets" },
+  { href: "/projects", icon: KanbanSquare, label: "Projets" },
   { href: "/citizen-services", icon: Building2, label: "Services Citoyens" },
-  { href: "/archives", icon: Archive, label: "Courrier & Archives" },
+  { href: "/archives", icon: Archive, label: "Courrier" },
+  { href: "/settings", icon: Settings, label: "Paramètres" },
 ];
 
 export default function SidebarNavContent() {

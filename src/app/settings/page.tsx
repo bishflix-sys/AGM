@@ -1,15 +1,15 @@
 import AppLayout from "@/components/layout/app-layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Archive } from "lucide-react";
+import { Settings } from "lucide-react";
 
-export default function ArchivesPage() {
+export default function SettingsPage() {
   return (
     <AppLayout>
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
         <header>
-          <h2 className="text-3xl font-bold tracking-tight">Courrier</h2>
+          <h2 className="text-3xl font-bold tracking-tight">Paramètres</h2>
           <p className="text-muted-foreground">
-            Numérisation, classement et archivage du courrier entrant et sortant.
+            Gérez les paramètres de l'application et du compte.
           </p>
         </header>
 
@@ -20,8 +20,8 @@ export default function ArchivesPage() {
             </CardHeader>
             <CardContent className="flex items-center justify-center p-16">
                 <div className="text-center text-muted-foreground">
-                    <Archive className="mx-auto h-12 w-12 mb-4" />
-                    <p>La fonctionnalité de gestion du courrier et des archives sera bientôt disponible ici.</p>
+                    <Settings className="mx-auto h-12 w-12 mb-4" />
+                    <p>La page des paramètres sera bientôt disponible ici.</p>
                 </div>
             </CardContent>
         </Card>
