@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AreaChart, CheckCircle, MapPin, PlusCircle, XCircle } from "lucide-react";
 import dynamic from 'next/dynamic';
+import { useMemo } from 'react';
 
 // Sample data for land parcels
 const parcels = [
@@ -51,13 +52,12 @@ const parcels = [
   }
 ] as const;
 
-const Map = dynamic(() => import('@/components/map'), {
-    loading: () => <p>Chargement de la carte...</p>,
-    ssr: false
-});
-
-
 export default function LandPage() {
+  const Map = useMemo(() => dynamic(() => import('@/components/map'), {
+      loading: () => <p>Chargement de la carte...</p>,
+      ssr: false
+  }), []);
+
   return (
     <AppLayout>
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
@@ -130,5 +130,3 @@ export default function LandPage() {
     </AppLayout>
   );
 }
-
-    
