@@ -1,76 +1,76 @@
 # AGM - Administration Générale Municipale
 
-AGM is a modern, comprehensive web platform designed to streamline the administrative processes of municipalities in Senegal. It provides a centralized, user-friendly interface for agents to manage everything from civil status records to urban planning and municipal finances.
+AGM est une plateforme web moderne et complète conçue pour rationaliser les processus administratifs des municipalités au Sénégal. Elle fournit une interface centralisée et conviviale permettant aux agents de tout gérer, des actes d'état civil à l'urbanisme et aux finances municipales.
 
-The application is built with a focus on real-world use cases, ensuring that the tools provided are relevant, efficient, and tailored to the needs of local governance.
+L'application est construite en se concentrant sur des cas d'utilisation réels, garantissant que les outils fournis sont pertinents, efficaces et adaptés aux besoins de la gouvernance locale.
 
-## ✨ Features
+## ✨ Fonctionnalités
 
-The platform is organized into distinct modules, each handling a core aspect of municipal administration:
+La plateforme est organisée en modules distincts, chacun gérant un aspect essentiel de l'administration municipale :
 
-- **🏛️ Tableau de bord (Dashboard):** A centralized overview of key metrics and recent activities across all modules.
-- **👤 État Civil (Civil Status):** Management of birth, marriage, and death certificates.
-- **📍 Foncier (Land Management):** Cadastral management, including an interactive map of land parcels.
-- **🏗️ Urbanisme (Urbanism):** Tracking of building permits, development authorizations, and other urban planning files.
-- **📜 Délibérations (Deliberations):** Management of municipal council meetings, decisions, and official records.
-- **💰 Finances (Finance):** Monitoring of budgets, revenues, and expenditures with visual reports.
-- **👥 Ressources Humaines (Human Resources):** Management of municipal agents, roles, and assignments.
-- **🏢 Prestataires (Providers):** Directory and contract management for external suppliers and service providers.
-- **🛠 Projets (Projects):** AI-powered project tracking and guidance system to monitor and advise on municipal projects.
-- **🗄️ Archives (Archives):** A digital archive for easy storage, search, and retrieval of official documents.
-- **📊 Rapports (Reports):** Generation of statistical reports for internal and external use.
-- **📢 Doléances (Complaints):** A system for citizens to submit and track complaints and suggestions.
-- **🔔 Notifications:** An internal alert system for important deadlines and updates.
-- **⚙️ Paramètres (Settings):** User profile and application settings management.
+- **🏛️ Tableau de bord :** Un aperçu centralisé des indicateurs clés et des activités récentes de tous les modules.
+- **👤 État Civil :** Gestion des actes de naissance, de mariage et de décès.
+- **📍 Foncier :** Gestion cadastrale, incluant une carte interactive des parcelles.
+- **🏗️ Urbanisme :** Suivi des permis de construire, des autorisations d'aménagement et autres dossiers d'urbanisme.
+- **📜 Délibérations :** Gestion des réunions du conseil municipal, des décisions et des procès-verbaux officiels.
+- **💰 Finances :** Suivi des budgets, des recettes et des dépenses avec des rapports visuels.
+- **👥 Ressources Humaines :** Gestion des agents municipaux, de leurs rôles et de leurs affectations.
+- **🏢 Prestataires :** Annuaire et gestion des contrats pour les fournisseurs et prestataires de services externes.
+- **🛠️ Projets :** Système de suivi et de conseil de projets assisté par IA pour superviser et orienter les projets municipaux.
+- **🗄️ Archives :** Une archive numérique pour le stockage, la recherche et la consultation faciles des documents officiels.
+- **📊 Rapports :** Génération de rapports statistiques pour un usage interne et externe.
+- **📢 Doléances :** Un système permettant aux citoyens de soumettre et de suivre leurs réclamations et suggestions.
+- **🔔 Notifications :** Un système d'alerte interne pour les échéances importantes et les mises à jour.
+- **⚙️ Paramètres :** Gestion du profil utilisateur et des paramètres de l'application.
 
-## 🚀 Tech Stack
+## 🚀 Stack Technique
 
-- **Framework:** [Next.js](https://nextjs.org/) (with App Router)
-- **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **UI:** [React](https://react.dev/)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Components:** [ShadCN UI](https://ui.shadcn.com/)
-- **Charting:** [Recharts](https://recharts.org/)
-- **Mapping:** [Leaflet.js](https://leafletjs.com/) & [React-Leaflet](https://react-leaflet.js.org/)
-- **AI Integration:** [Genkit](https://firebase.google.com/docs/genkit)
+- **Framework :** [Next.js](https://nextjs.org/) (avec App Router)
+- **Langage :** [TypeScript](https://www.typescriptlang.org/)
+- **UI :** [React](https://react.dev/)
+- **Style :** [Tailwind CSS](https://tailwindcss.com/)
+- **Composants :** [ShadCN UI](https://ui.shadcn.com/)
+- **Graphiques :** [Recharts](https://recharts.org/)
+- **Cartographie :** [Leaflet.js](https://leafletjs.com/) & [React-Leaflet](https://react-leaflet.js.org/)
+- **Intégration IA :** [Genkit](https://firebase.google.com/docs/genkit)
 
-## 🏁 Getting Started
+## 🏁 Démarrage
 
-To get a local copy up and running, follow these simple steps.
+Pour obtenir une copie locale et la faire fonctionner, suivez ces étapes simples.
 
-### Prerequisites
+### Prérequis
 
-- Node.js (v18 or later recommended)
-- npm or yarn
+- Node.js (v18 ou ultérieure recommandée)
+- npm ou yarn
 
 ### Installation
 
-1. Clone the repository:
+1. Clonez le dépôt :
    ```sh
-   git clone <YOUR_REPOSITORY_URL>
+   git clone <URL_DE_VOTRE_DEPOT>
    ```
-2. Navigate to the project directory:
+2. Accédez au répertoire du projet :
    ```sh
-   cd <PROJECT_DIRECTORY>
+   cd <REPERTOIRE_DU_PROJET>
    ```
-3. Install NPM packages:
+3. Installez les paquets NPM :
    ```sh
    npm install
    ```
 
-### Running the Development Server
+### Lancer le serveur de développement
 
-Once the dependencies are installed, you can start the development server:
+Une fois les dépendances installées, vous pouvez démarrer le serveur de développement :
 
 ```sh
 npm run dev
 ```
 
-Open [http://localhost:9002](http://localhost:9002) with your browser to see the result.
+Ouvrez [http://localhost:9002](http://localhost:9002) dans votre navigateur pour voir le résultat.
 
-## 🛠 Available Scripts
+## 🛠️ Scripts Disponibles
 
-- `npm run dev`: Starts the Next.js development server.
-- `npm run build`: Creates a production-ready build of the application.
-- `npm run start`: Starts the production server.
-- `npm run lint`: Lints the codebase using Next.js's built-in ESLint configuration.
+- `npm run dev` : Démarre le serveur de développement Next.js.
+- `npm run build` : Crée une version de production de l'application.
+- `npm run start` : Démarre le serveur de production.
+- `npm run lint` : Analyse le code avec la configuration ESLint intégrée de Next.js.
