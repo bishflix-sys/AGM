@@ -58,13 +58,13 @@ const parcelStatusColors = {
   litige: 'red'
 };
 
+const Map = dynamic(() => import('@/components/map'), {
+    loading: () => <p>Chargement de la carte...</p>,
+    ssr: false
+});
+
 
 export default function LandPage() {
-    const Map = useMemo(() => dynamic(() => import('@/components/map'), { 
-        loading: () => <p>Chargement de la carte...</p>,
-        ssr: false 
-    }), []);
-    
   return (
     <AppLayout>
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
@@ -93,4 +93,3 @@ export default function LandPage() {
     </AppLayout>
   );
 }
-
