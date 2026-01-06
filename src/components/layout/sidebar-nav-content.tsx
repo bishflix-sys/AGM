@@ -5,14 +5,19 @@ import Link from "next/link";
 import { usePathname } from 'next/navigation'
 import {
   Archive,
-  Building2,
+  Bell,
+  Building,
   FileText,
-  KanbanSquare,
+  Gavel,
   Landmark,
   LayoutDashboard,
   MapPin,
-  Users,
+  MessageSquareWarning,
+  PieChart,
   Settings,
+  Users,
+  FolderKanban,
+  Building2,
 } from "lucide-react";
 import {
   SidebarMenu,
@@ -24,11 +29,16 @@ const navItems = [
   { href: "/", icon: LayoutDashboard, label: "Tableau de bord" },
   { href: "/civil-status", icon: FileText, label: "État Civil" },
   { href: "/land", icon: MapPin, label: "Foncier" },
+  { href: "/urbanisme", icon: Building, label: "Urbanisme" },
+  { href: "/deliberations", icon: Gavel, label: "Délibérations" },
   { href: "/finance", icon: Landmark, label: "Finances" },
   { href: "/hr", icon: Users, label: "Ressources Humaines" },
-  { href: "/projects", icon: KanbanSquare, label: "Projets" },
-  { href: "/citizen-services", icon: Building2, label: "Services Citoyens" },
-  { href: "/archives", icon: Archive, label: "Courrier" },
+  { href: "/providers", icon: Building2, label: "Prestataires" },
+  { href: "/projects", icon: FolderKanban, label: "Projets" },
+  { href: "/archives", icon: Archive, label: "Archives" },
+  { href: "/reports", icon: PieChart, label: "Rapports" },
+  { href: "/complaints", icon: MessageSquareWarning, label: "Doléances" },
+  { href: "/notifications", icon: Bell, label: "Notifications" },
   { href: "/settings", icon: Settings, label: "Paramètres" },
 ];
 
