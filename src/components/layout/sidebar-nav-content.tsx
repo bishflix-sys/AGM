@@ -1,8 +1,7 @@
 'use client';
-// This component is created to avoid repetition between sidebar-nav.tsx and header.tsx for mobile view
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import {
   Archive,
   Bell,
@@ -48,28 +47,31 @@ const navItems = [
 const ROLES = {
   MAIRE: 'maire',
   SECRETAIRE_MUNICIPAL: 'secretaire_municipal',
+  AGENT_ADMIN_FINANCES: 'agent_admin_finances',
   AGENT_ETAT_CIVIL: 'agent_etat_civil',
-  AGENT_FINANCES: 'agent_finances',
   AGENT_TECHNIQUE: 'agent_technique',
-  AGENT_RH: 'agent_rh',
+  AGENT_PLANIFICATION: 'agent_planification',
 };
 
+const allPermissions = navItems.map(item => item.href);
+
 // Define which navigation items are visible for each role.
-const permissions = {
-  [ROLES.MAIRE]: navItems.map(item => item.href), // Full access
-  [ROLES.SECRETAIRE_MUNICIPAL]: navItems.map(item => item.href), // Full access
+const permissions: Record<string, string[]> = {
+  [ROLES.MAIRE]: allPermissions,
+  [ROLES.SECRETAIRE_MUNICIPAL]: allPermissions,
+  [ROLES.AGENT_ADMIN_FINANCES]: [
+    '/',
+    '/finance',
+    '/hr',
+    '/providers',
+    '/reports',
+    '/notifications',
+    '/settings',
+  ],
   [ROLES.AGENT_ETAT_CIVIL]: [
     '/',
     '/civil-status',
     '/archives',
-    '/notifications',
-    '/settings',
-  ],
-  [ROLES.AGENT_FINANCES]: [
-    '/',
-    '/finance',
-    '/providers',
-    '/reports',
     '/notifications',
     '/settings',
   ],
@@ -78,20 +80,34 @@ const permissions = {
     '/land',
     '/urbanisme',
     '/projects',
+    '/complaints',
     '/notifications',
     '/settings',
   ],
-  [ROLES.AGENT_RH]: ['/', '/hr', '/notifications', '/settings'],
+  [ROLES.AGENT_PLANIFICATION]: [
+    '/',
+    '/projects',
+    '/reports',
+    '/complaints',
+    '/notifications',
+    '/settings',
+  ],
 };
-
-// For demonstration, we'll simulate the currently logged-in user's role.
-// In a real application, this would come from the authentication state.
-const currentUserRole = ROLES.AGENT_ETAT_CIVIL;
 
 // --- End of RBAC Simulation ---
 
 export default function SidebarNavContent() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // In a real application, this would come from the authentication state after login.
+  // Here, we simulate it using a URL parameter for demonstration.
+  // Default to a restricted role if no parameter is provided.
+  const roleFromUrl = searchParams.get('role');
+  const currentUserRole = roleFromUrl && Object.values(ROLES).includes(roleFromUrl) 
+    ? roleFromUrl 
+    : ROLES.AGENT_ETAT_CIVIL;
+
 
   // Filter navigation items based on the current user's role
   const visibleNavItems = navItems.filter(item =>
@@ -103,7 +119,7 @@ export default function SidebarNavContent() {
       <SidebarMenu>
         {visibleNavItems.map(item => (
           <SidebarMenuItem key={item.href}>
-            <Link href={item.href}>
+            <Link href={`${item.href}${item.href === '/' ? `?role=${currentUserRole}`: `?role=${currentUserRole}`}`}>
               <SidebarMenuButton isActive={pathname === item.href}>
                 <item.icon className="h-5 w-5" />
                 <span className="lg:text-base">{item.label}</span>
