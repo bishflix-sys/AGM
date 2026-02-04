@@ -27,8 +27,9 @@ import {
 import type { ChartConfig } from "@/components/ui/chart"
 
 import AppLayout from "@/components/layout/app-layout";
-import { Building, FolderKanban, Landmark, Users, FileText, PiggyBank, MessageSquareWarning } from "lucide-react";
+import { Building, FolderKanban, Landmark, Users, FileText, PiggyBank, MessageSquareWarning, UserPlus } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const chartData = [
   { month: "Janvier", desktop: 186, mobile: 80 },
@@ -82,6 +83,13 @@ const performanceChartConfig = {
     color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig
+
+const recentActivities = [
+    { icon: <FileText />, text: "Nouvel acte de naissance créé pour Moussa Sarr.", time: "il y a 2 minutes", link: "/civil-status/NA-2024-1531" },
+    { icon: <Building />, text: "Le permis de construire PC-2024-075 a été validé.", time: "il y a 15 minutes", link: "/urbanisme/PC-2024-075" },
+    { icon: <MessageSquareWarning />, text: "Nouvelle doléance reçue de Aïssatou Gueye.", time: "il y a 1 heure", link: "/complaints" },
+    { icon: <UserPlus />, text: "Nouvel agent ajouté: Awa Diouf.", time: "il y a 3 heures", link: "/hr/AG-102" },
+]
 
 export default function DashboardPage() {
   return (
@@ -150,75 +158,102 @@ export default function DashboardPage() {
             </Card>
           </Link>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-          <Card className="col-span-4">
-            <CardHeader>
-              <CardTitle className="font-headline">Aperçu Financier</CardTitle>
-            </CardHeader>
-            <CardContent className="pl-2">
-              <ChartContainer config={chartConfig} className="h-[300px] w-full">
-                <BarChart data={chartData} accessibilityLayer>
-                  <CartesianGrid vertical={false} />
-                  <XAxis
-                    dataKey="month"
-                    tickLine={false}
-                    tickMargin={10}
-                    axisLine={false}
-                  />
-                  <YAxis />
-                  <Tooltip content={<ChartTooltipContent />} />
-                  <Legend />
-                  <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-                  <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-                </BarChart>
-              </ChartContainer>
-            </CardContent>
-          </Card>
-          <Card className="col-span-4 md:col-span-3">
-            <CardHeader>
-              <CardTitle className="font-headline">Progression des Projets Clés</CardTitle>
-              <CardDescription>Avancement moyen des projets prioritaires ce mois-ci.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ChartContainer config={projectChartConfig} className="h-[300px] w-full">
-                <LineChart
-                  data={projectChartData}
-                  margin={{ top: 5, right: 20, left: -10, bottom: 5 }}
-                  accessibilityLayer
-                >
-                  <CartesianGrid strokeDasharray="3 3" vertical={false}/>
-                  <XAxis dataKey="date" tickLine={false} axisLine={false} tickMargin={8} />
-                  <YAxis />
-                  <Tooltip content={<ChartTooltipContent hideLabel />} />
-                  <Line type="monotone" dataKey="value" stroke="var(--color-value)" strokeWidth={2} dot={true} />
-                </LineChart>
-              </ChartContainer>
-            </CardContent>
-          </Card>
-           <Card className="lg:col-span-7">
-            <CardHeader>
-                <CardTitle className="font-headline">Performance des Services</CardTitle>
-                <CardDescription>
-                    Volume de dossiers traités par les services clés ce mois-ci.
-                </CardDescription>
-            </CardHeader>
-            <CardContent>
-                <ChartContainer config={performanceChartConfig} className="h-[350px] w-full">
-                    <BarChart data={performanceChartData} layout="vertical" margin={{ left: 30 }}>
-                        <CartesianGrid horizontal={false} />
-                        <XAxis type="number" dataKey="Dossiers traités" />
-                        <YAxis dataKey="name" type="category" tickLine={false} axisLine={false} tickMargin={10} width={120} />
-                        <ChartTooltip
-                            cursor={false}
-                            content={<ChartTooltipContent indicator="line" />}
-                        />
-                        <Bar dataKey="Dossiers traités" fill="var(--color-Dossiers traités)" radius={5} />
-                    </BarChart>
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="lg:col-span-2 space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="font-headline">Aperçu Financier</CardTitle>
+              </CardHeader>
+              <CardContent className="pl-2">
+                <ChartContainer config={chartConfig} className="h-[300px] w-full">
+                  <BarChart data={chartData} accessibilityLayer>
+                    <CartesianGrid vertical={false} />
+                    <XAxis
+                      dataKey="month"
+                      tickLine={false}
+                      tickMargin={10}
+                      axisLine={false}
+                    />
+                    <YAxis />
+                    <Tooltip content={<ChartTooltipContent />} />
+                    <Legend />
+                    <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
+                    <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+                  </BarChart>
                 </ChartContainer>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                  <CardTitle className="font-headline">Performance des Services</CardTitle>
+                  <CardDescription>
+                      Volume de dossiers traités par les services clés ce mois-ci.
+                  </CardDescription>
+              </CardHeader>
+              <CardContent>
+                  <ChartContainer config={performanceChartConfig} className="h-[350px] w-full">
+                      <BarChart data={performanceChartData} layout="vertical" margin={{ left: 30 }}>
+                          <CartesianGrid horizontal={false} />
+                          <XAxis type="number" dataKey="Dossiers traités" />
+                          <YAxis dataKey="name" type="category" tickLine={false} axisLine={false} tickMargin={10} width={120} />
+                          <ChartTooltip
+                              cursor={false}
+                              content={<ChartTooltipContent indicator="line" />}
+                          />
+                          <Bar dataKey="Dossiers traités" fill="var(--color-Dossiers traités)" radius={5} />
+                      </BarChart>
+                  </ChartContainer>
+              </CardContent>
+            </Card>
+          </div>
+          <div className="lg:col-span-1 space-y-6">
+            <Card>
+                <CardHeader>
+                    <CardTitle className="font-headline">Activités Récentes</CardTitle>
+                    <CardDescription>Les dernières actions effectuées sur la plateforme.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    {recentActivities.map((activity, index) => (
+                        <div key={index} className="flex items-start gap-3">
+                            <div className="flex-shrink-0 rounded-full bg-primary/10 p-2 text-primary">
+                                {activity.icon}
+                            </div>
+                            <div className="flex-1">
+                                <Link href={activity.link} className="hover:underline">
+                                  <p className="text-sm font-medium leading-tight">{activity.text}</p>
+                                </Link>
+                                <p className="text-xs text-muted-foreground">{activity.time}</p>
+                            </div>
+                        </div>
+                    ))}
+                </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="font-headline">Progression des Projets Clés</CardTitle>
+                <CardDescription>Avancement moyen des projets prioritaires.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ChartContainer config={projectChartConfig} className="h-[250px] w-full">
+                  <LineChart
+                    data={projectChartData}
+                    margin={{ top: 5, right: 20, left: -10, bottom: 5 }}
+                    accessibilityLayer
+                  >
+                    <CartesianGrid strokeDasharray="3 3" vertical={false}/>
+                    <XAxis dataKey="date" tickLine={false} axisLine={false} tickMargin={8} />
+                    <YAxis />
+                    <Tooltip content={<ChartTooltipContent hideLabel />} />
+                    <Line type="monotone" dataKey="value" stroke="var(--color-value)" strokeWidth={2} dot={true} />
+                  </LineChart>
+                </ChartContainer>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </AppLayout>
   )
 }
+
+    
