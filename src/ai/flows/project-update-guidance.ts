@@ -17,7 +17,9 @@ const ProjectGuidanceInputSchema = z.object({
 export type ProjectGuidanceInput = z.infer<typeof ProjectGuidanceInputSchema>;
 
 const ProjectGuidanceOutputSchema = z.object({
-  guidance: z.string().describe('AI-driven insights and advice based on successful case studies of similar projects.'),
+  strengths: z.array(z.string()).describe('List of 2-3 key strengths of the project.'),
+  weaknesses: z.array(z.string()).describe('List of 2-3 key weaknesses or risks.'),
+  recommendations: z.array(z.string()).describe('List of 3-4 actionable recommendations to improve the project.'),
 });
 export type ProjectGuidanceOutput = z.infer<typeof ProjectGuidanceOutputSchema>;
 
@@ -29,11 +31,12 @@ const prompt = ai.definePrompt({
   name: 'projectGuidancePrompt',
   input: {schema: ProjectGuidanceInputSchema},
   output: {schema: ProjectGuidanceOutputSchema},
-  prompt: `You are a project management expert with extensive knowledge of municipal projects.
+  prompt: `You are a project management expert with extensive knowledge of municipal projects in Senegal.
 
-  Based on successful case studies of similar projects, provide actionable advice and solutions for overcoming challenges in the current project.
+  Analyze the provided project information and provide a structured analysis.
+  Based on successful case studies of similar projects, identify the project's strengths, potential weaknesses or risks, and provide actionable recommendations.
 
-  Consider the project description and any provided photo to tailor your guidance.
+  Your response must be in French.
 
   Project Description: {{{projectDescription}}}
   {{#if projectPhotoDataUri}}

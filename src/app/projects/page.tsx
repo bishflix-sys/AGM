@@ -133,8 +133,25 @@ export default function ProjectsPage() {
                    </Alert>
                 )}
                 {state?.output ? (
-                  <div className="prose prose-sm max-w-none text-foreground">
-                    <p>{state.output.guidance}</p>
+                  <div className="space-y-6 text-sm">
+                    <div>
+                        <h3 className="font-semibold text-primary">Points Forts</h3>
+                        <ul className="list-disc space-y-1 pl-5 mt-2">
+                            {state.output.strengths.map((item, i) => <li key={`s-${i}`}>{item}</li>)}
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="font-semibold text-destructive">Points de Vigilance</h3>
+                        <ul className="list-disc space-y-1 pl-5 mt-2">
+                            {state.output.weaknesses.map((item, i) => <li key={`w-${i}`}>{item}</li>)}
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="font-semibold text-foreground">Recommandations Clés</h3>
+                        <ul className="list-disc space-y-1 pl-5 mt-2">
+                            {state.output.recommendations.map((item, i) => <li key={`r-${i}`}>{item}</li>)}
+                        </ul>
+                    </div>
                   </div>
                 ) : (
                   <div className="flex flex-col items-center justify-center text-center text-muted-foreground h-full p-8">
