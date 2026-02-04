@@ -27,7 +27,7 @@ import {
 import type { ChartConfig } from "@/components/ui/chart"
 
 import AppLayout from "@/components/layout/app-layout";
-import { Building, FolderKanban, Landmark, Users, FileText, PiggyBank } from "lucide-react";
+import { Building, FolderKanban, Landmark, Users, FileText, PiggyBank, MessageSquareWarning } from "lucide-react";
 import Link from "next/link";
 
 const chartData = [
@@ -67,12 +67,28 @@ const projectChartConfig = {
   },
 } satisfies ChartConfig;
 
+
+const performanceChartData = [
+  { name: "État Civil", "Dossiers traités": 573 },
+  { name: "Urbanisme", "Dossiers traités": 124 },
+  { name: "Doléances", "Dossiers traités": 94 },
+  { name: "Foncier", "Dossiers traités": 78 },
+  { name: "Archives", "Dossiers traités": 215 },
+];
+ 
+const performanceChartConfig = {
+  "Dossiers traités": {
+    label: "Dossiers traités",
+    color: "hsl(var(--chart-1))",
+  },
+} satisfies ChartConfig
+
 export default function DashboardPage() {
   return (
     <AppLayout>
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
         <h2 className="text-3xl font-bold tracking-tight font-headline">Tableau de bord</h2>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
           <Link href="/projects">
             <Card className="hover:bg-accent hover:text-accent-foreground transition-colors">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -94,6 +110,18 @@ export default function DashboardPage() {
               <CardContent>
                 <div className="text-2xl font-bold">231</div>
                 <p className="text-xs text-muted-foreground">+12 depuis le mois dernier</p>
+              </CardContent>
+            </Card>
+          </Link>
+           <Link href="/complaints">
+            <Card className="hover:bg-accent hover:text-accent-foreground transition-colors">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Doléances en attente</CardTitle>
+                <MessageSquareWarning className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-destructive">17</div>
+                <p className="text-xs text-muted-foreground">Dossiers non traités</p>
               </CardContent>
             </Card>
           </Link>
@@ -165,6 +193,28 @@ export default function DashboardPage() {
                   <Line type="monotone" dataKey="value" stroke="var(--color-value)" strokeWidth={2} dot={true} />
                 </LineChart>
               </ChartContainer>
+            </CardContent>
+          </Card>
+           <Card className="lg:col-span-7">
+            <CardHeader>
+                <CardTitle className="font-headline">Performance des Services</CardTitle>
+                <CardDescription>
+                    Volume de dossiers traités par les services clés ce mois-ci.
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <ChartContainer config={performanceChartConfig} className="h-[350px] w-full">
+                    <BarChart data={performanceChartData} layout="vertical" margin={{ left: 30 }}>
+                        <CartesianGrid horizontal={false} />
+                        <XAxis type="number" dataKey="Dossiers traités" />
+                        <YAxis dataKey="name" type="category" tickLine={false} axisLine={false} tickMargin={10} width={120} />
+                        <ChartTooltip
+                            cursor={false}
+                            content={<ChartTooltipContent indicator="line" />}
+                        />
+                        <Bar dataKey="Dossiers traités" fill="var(--color-Dossiers traités)" radius={5} />
+                    </BarChart>
+                </ChartContainer>
             </CardContent>
           </Card>
         </div>
