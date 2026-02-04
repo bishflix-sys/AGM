@@ -13,6 +13,7 @@ import type { ChartConfig } from "@/components/ui/chart"
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 const chartData = [
   { month: "Jan", recettes: 186, depenses: 80 },
@@ -52,7 +53,9 @@ export default function FinancePage() {
                     Suivi du budget, des recettes et des dépenses de la municipalité.
                 </p>
             </div>
-            <Button><PlusCircle className="mr-2"/> Nouvelle Transaction</Button>
+            <Link href="/finance/new">
+                <Button><PlusCircle className="mr-2"/> Nouvelle Transaction</Button>
+            </Link>
         </header>
 
          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

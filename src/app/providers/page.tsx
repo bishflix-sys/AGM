@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Building2, FileText, MoreHorizontal, PlusCircle, Search } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 const providers = [
   { id: "F-001", name: "SEN'EAU", field: "Eau & Assainissement", contracts: 2, status: "Actif" },
@@ -34,7 +35,9 @@ export default function ProvidersPage() {
               Gestion des contrats, marchés publics et paiements.
             </p>
           </div>
-           <Button><PlusCircle className="mr-2"/> Nouveau Prestataire</Button>
+            <Link href="/providers/new">
+                <Button><PlusCircle className="mr-2"/> Nouveau Prestataire</Button>
+            </Link>
         </header>
 
         <Card>
@@ -82,7 +85,9 @@ export default function ProvidersPage() {
                                             </Button>
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent align="end">
-                                            <DropdownMenuItem><FileText className="mr-2 h-4 w-4"/> Voir la fiche</DropdownMenuItem>
+                                            <Link href={`/providers/${p.id}`}>
+                                                <DropdownMenuItem><FileText className="mr-2 h-4 w-4"/> Voir la fiche</DropdownMenuItem>
+                                            </Link>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
                                 </TableCell>

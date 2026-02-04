@@ -29,7 +29,9 @@ export default function DeliberationsPage() {
           </div>
           <div className="flex gap-2">
             <Button variant="outline"><Calendar className="mr-2"/> Planifier une séance</Button>
-            <Button><PlusCircle className="mr-2"/> Nouvelle délibération</Button>
+            <Link href="/deliberations/new">
+                <Button><PlusCircle className="mr-2"/> Nouvelle délibération</Button>
+            </Link>
           </div>
         </header>
 
@@ -90,9 +92,11 @@ export default function DeliberationsPage() {
                                     {d.votesFor !== null ? `${d.votesFor}/${d.votesAgainst}/${d.abstentions}` : 'N/A'}
                                 </TableCell>
                                 <TableCell className="text-right">
-                                    <Button variant="outline" size="sm">
-                                        <FileText className="mr-2 h-4 w-4"/> Voir le PV
-                                    </Button>
+                                    <Link href={`/deliberations/${d.id}`}>
+                                        <Button variant="outline" size="sm">
+                                            <FileText className="mr-2 h-4 w-4"/> Voir le PV
+                                        </Button>
+                                    </Link>
                                 </TableCell>
                             </TableRow>
                         ))}

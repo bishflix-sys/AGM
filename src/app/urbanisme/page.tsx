@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Building, Eye, FilePlus, MoreHorizontal } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 const permits = [
     { id: "PC-2024-078", applicant: "M. Ibrahima Diallo", type: "Permis de Construire", date: "15/07/2024", status: "En instruction" },
@@ -35,7 +36,9 @@ export default function UrbanismePage() {
               Gestion des permis de construire, autorisations et lotissements.
             </p>
           </div>
-          <Button><FilePlus className="mr-2"/> Nouveau Dossier</Button>
+          <Link href="/urbanisme/new">
+            <Button><FilePlus className="mr-2"/> Nouveau Dossier</Button>
+          </Link>
         </header>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -109,7 +112,9 @@ export default function UrbanismePage() {
                                             </Button>
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent align="end">
-                                            <DropdownMenuItem><Eye className="mr-2 h-4 w-4"/> Consulter le dossier</DropdownMenuItem>
+                                            <Link href={`/urbanisme/${permit.id}`}>
+                                                <DropdownMenuItem><Eye className="mr-2 h-4 w-4"/> Consulter le dossier</DropdownMenuItem>
+                                            </Link>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
                                 </TableCell>

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AreaChart, CheckCircle, MapPin, PlusCircle, XCircle } from "lucide-react";
 import dynamic from 'next/dynamic';
+import Link from "next/link";
 import { useMemo } from 'react';
 
 // Sample data for land parcels
@@ -33,7 +34,9 @@ export default function LandPage() {
               Registre des attributions foncières, parcelles et bénéficiaires.
             </p>
           </div>
-          <Button><PlusCircle className="mr-2"/> Nouvelle Parcelle</Button>
+           <Link href="/land/new">
+            <Button><PlusCircle className="mr-2"/> Nouvelle Parcelle</Button>
+          </Link>
         </header>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

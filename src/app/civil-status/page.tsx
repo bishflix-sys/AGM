@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Baby, FileEdit, Heart, PlusCircle, Search, Skull } from "lucide-react";
+import Link from "next/link";
 
 
 const recentActs = {
@@ -33,7 +34,9 @@ export default function CivilStatusPage() {
               Gestion des naissances, mariages et décès.
             </p>
           </div>
-          <Button><PlusCircle className="mr-2"/> Nouvel Acte</Button>
+          <Link href="/civil-status/new">
+            <Button><PlusCircle className="mr-2"/> Nouvel Acte</Button>
+          </Link>
         </header>
 
         <Card>
@@ -79,7 +82,9 @@ export default function CivilStatusPage() {
                                         <TableCell>{act.date}</TableCell>
                                         <TableCell>{act.officer}</TableCell>
                                         <TableCell className="text-right">
-                                            <Button variant="outline" size="sm"><FileEdit className="mr-2 h-4 w-4"/> Modifier</Button>
+                                            <Link href={`/civil-status/${act.id}`}>
+                                                <Button variant="outline" size="sm"><FileEdit className="mr-2 h-4 w-4"/> Modifier</Button>
+                                            </Link>
                                         </TableCell>
                                     </TableRow>
                                 ))}
@@ -112,7 +117,9 @@ export default function CivilStatusPage() {
                                         <TableCell>{act.date}</TableCell>
                                         <TableCell>{act.officer}</TableCell>
                                         <TableCell className="text-right">
-                                            <Button variant="outline" size="sm"><FileEdit className="mr-2 h-4 w-4"/> Modifier</Button>
+                                            <Link href={`/civil-status/${act.id}`}>
+                                                <Button variant="outline" size="sm"><FileEdit className="mr-2 h-4 w-4"/> Modifier</Button>
+                                            </Link>
                                         </TableCell>
                                     </TableRow>
                                 ))}
@@ -145,7 +152,9 @@ export default function CivilStatusPage() {
                                         <TableCell>{act.date}</TableCell>
                                         <TableCell>{act.officer}</TableCell>
                                         <TableCell className="text-right">
-                                            <Button variant="outline" size="sm"><FileEdit className="mr-2 h-4 w-4"/> Modifier</Button>
+                                            <Link href={`/civil-status/${act.id}`}>
+                                                <Button variant="outline" size="sm"><FileEdit className="mr-2 h-4 w-4"/> Modifier</Button>
+                                            </Link>
                                         </TableCell>
                                     </TableRow>
                                 ))}

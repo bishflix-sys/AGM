@@ -9,6 +9,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { MoreHorizontal, UserPlus } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 
 const agents = [
@@ -30,7 +31,9 @@ export default function HRPage() {
                     Gestion des agents municipaux, affectations et présence.
                 </p>
             </div>
-            <Button><UserPlus className="mr-2"/> Nouvel Agent</Button>
+            <Link href="/hr/new">
+                <Button><UserPlus className="mr-2"/> Nouvel Agent</Button>
+            </Link>
         </header>
 
          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -114,7 +117,9 @@ export default function HRPage() {
                                             </Button>
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent>
-                                            <DropdownMenuItem>Voir le profil</DropdownMenuItem>
+                                            <Link href={`/hr/${agent.id}`}>
+                                                <DropdownMenuItem>Voir le profil</DropdownMenuItem>
+                                            </Link>
                                             <DropdownMenuItem>Gérer les absences</DropdownMenuItem>
                                         </DropdownMenuContent>
                                     </DropdownMenu>

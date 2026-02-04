@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Archive, File, FileText, Search, Upload } from "lucide-react";
+import Link from "next/link";
 
 const archivedDocuments = [
     { id: "ARCH-2023-015", type: "Délibération", date: "15/06/2023", subject: "Approbation du budget primitif 2023", keywords: "budget, finance" },
@@ -26,7 +27,9 @@ export default function ArchivesPage() {
               Classement, recherche et consultation des documents archivés.
             </p>
           </div>
-          <Button><Upload className="mr-2 h-4 w-4" /> Numériser un document</Button>
+          <Link href="/archives/new">
+            <Button><Upload className="mr-2 h-4 w-4" /> Numériser un document</Button>
+          </Link>
         </header>
 
          <Card>
@@ -82,10 +85,12 @@ export default function ArchivesPage() {
                                 <TableCell>{doc.date}</TableCell>
                                 <TableCell>{doc.subject}</TableCell>
                                 <TableCell className="text-right">
-                                    <Button variant="outline" size="sm">
-                                        <FileText className="mr-2 h-4 w-4" />
-                                        Consulter
-                                    </Button>
+                                    <Link href={`/archives/${doc.id}`}>
+                                        <Button variant="outline" size="sm">
+                                            <FileText className="mr-2 h-4 w-4" />
+                                            Consulter
+                                        </Button>
+                                    </Link>
                                 </TableCell>
                             </TableRow>
                         ))}
