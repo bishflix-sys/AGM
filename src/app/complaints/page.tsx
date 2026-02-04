@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { FileEdit, MoreHorizontal, PlusCircle } from "lucide-react";
+import Link from "next/link";
 
 const complaints = [
     { id: "DOL-001", date: "20/07/2024", citizen: "Aïssatou Gueye", subject: "Nid-de-poule dangereux Rue 12", type: "Voirie", status: "En cours" },
@@ -36,7 +37,9 @@ export default function ComplaintsPage() {
               Gestion des réclamations, plaintes et suggestions des citoyens.
             </p>
           </div>
-          <Button><PlusCircle className="mr-2"/> Nouvelle doléance</Button>
+          <Link href="/complaints/new">
+            <Button><PlusCircle className="mr-2"/> Nouvelle doléance</Button>
+          </Link>
         </header>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
